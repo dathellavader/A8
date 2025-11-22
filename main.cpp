@@ -62,11 +62,14 @@ int numAssigns = readInt("Enter the number of assignments (0 to 10): ");
 
 double assignAvg = assignAverage(numAssigns);
 
-double midterm = readScore("Enter your midterm exam score: ");
-double finalExam = readScore("Enter your final exam score: ");
+double midterm;
+double finalExam;
+getInput(midterm, finalExam);
 
 double finalScore = calcFinalScore(assignAvg, midterm, finalExam);
-char letter = calcLetterGrade(finalScore, letter);
+
+char letter;
+calcLetterGrade(finalScore, letter);
 
 cout << fixed << setprecision(1);
 cout << "\nYour Final Numeric score is: " << finalScore << endl;
@@ -104,14 +107,13 @@ return aNum;
 }
 
 void readScore(string prompt, double &num) {
-  double num;
   bool valid = false;
 
   while (valid == false) {
     cout << prompt;
     cin >> num;
 
-  if (!cin.fail() && score >= 0 && score <= 4) {
+  if (!cin.fail() && num >= 0 && num <= 4) {
     valid = true;
   }
   else {
@@ -120,7 +122,6 @@ void readScore(string prompt, double &num) {
     cin.ignore(1000, '\n');
   }
   }
-return num;
 }
 
 double assignAverage(int numAssigns) {
@@ -128,15 +129,17 @@ double assignAverage(int numAssigns) {
   if (numAssigns == 0) {
     return 0.0;
   }
+  double score;
 for (int i = 1; i <= numAssigns; ++i) {
-  double aScore = readScore("Enter score: " + to_string(i) + ": ", temp);
-  aSum += temp;
+  readScore("Enter score " + to_string(i) + ": ", score);
+  aSum += score;
 }
 return aSum / numAssigns;
 }
 
 void getInput(double &midtermScore, double &finalExamScore) {
-
+readScore("Enter your midterm exam score: ", midtermScore);
+readScore("Enter your final exam score: ", finalExamScore);
 }
 
 
@@ -146,19 +149,19 @@ double calcFinalScore(double assignAvg, double midterm, double finalExam) {
 
 void calcLetterGrade(double finalScore, char &letter) {
   if (finalScore >= 3.3) {
-  return 'A';
+  letter = 'A';
   }
 else if (finalScore >= 2.8) {
-  return 'B';
+  letter = 'B';
 }
 else if (finalScore >= 2.0) {
-  return 'C';
+  letter = 'C';
 }
 else if (finalScore >= 1.2) {
-  return 'D';
+  letter = 'D';
 }
 else {
-  return 'F';
+  letter = 'F';
 }
 }
 
@@ -192,6 +195,57 @@ https://github.com/Glen-Sasek-PCC-Instructor/2025-06-22/blob/main/Pseudocode-Ref
 
 
 SAMPLE RUNS
-Copy from assignment document.
+Welcome to my Final Grade Calculator!
+Please enter the following information and I will calculate your Final Numerical Grade and Letter Grade for you!
+The number of assignments must be between 0 and 10.
+All scores entered must be between 0 and 4.
+Enter the number of assignments (0 to 10): 6
+Enter score 1: 3.4 
+Enter score 2: 4 
+Enter score 3: 2.5 
+Enter score 4: 3.3
+Enter score 5: 3.1
+Enter score 6: 2.5
+Enter your midterm exam score: 3.5
+Enter your final exam score: 4
+Your Final Numeric score is 3.4
+Your Final Grade is A
+Thank you for using my Grade Calculator!
+
+
+Welcome to my Final Grade Calculator!
+Please enter the following information and I will calculate your Final Numerical Grade and Letter Grade for you!
+The number of assignments must be between 0 and 10.
+All scores entered must be between 0 and 4.
+Enter the number of assignments (0 to 10): 3
+Enter score 1: 3 
+Enter score 2: 4 
+Enter score 3: 2.5 
+Enter your midterm exam score: 2.5
+Enter your final exam score: 2
+Your Final Numeric score is 2.8
+Your Final Grade is B
+Thank you for using my Grade Calculator!
+
+
+Welcome to my Final Grade Calculator!
+Please enter the following information and I will calculate your Final Numerical Grade and Letter Grade for you!
+The number of assignments must be between 0 and 10.
+All scores entered must be between 0 and 4.
+Enter the number of assignments (0 to 10): 12
+Illegal Value! Please try again!!
+Enter the number of assignments (0 to 10): 5
+Enter score 1: 3.4 
+Enter score 2: 4 
+Enter score 3: 2.5 
+Enter score 4: 5.5
+Illegal Score! Please try again!
+Enter score 4: 3.5
+Enter score 5: 3.1
+Enter your midterm exam score: 3.5
+Enter your final exam score: 4
+Your Final Numeric score is 3.5
+Your Final Grade is A
+Thank you for using my Grade Calculator!
 
 */
