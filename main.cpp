@@ -19,16 +19,16 @@
 
 
 // ------------- DESIGN DOCUMENT -------------
-// A. INPUT ✅: 
-// B. OUTPUT ✅:
-// C. CALCULATIONS ✅:
-// D. LOGIC and ALGORITHMS ✅:
+// A. INPUT ✅: y
+// B. OUTPUT ✅: y
+// C. CALCULATIONS ✅: y
+// D. LOGIC and ALGORITHMS ✅: y
 //    (Optional) flow chart link or file name: 
 
 
 // ------------- TESTING -------------
-// PASS ALL GIVEN SAMPLE RUN TESTS ✅: 
-// (Optional) Additional tests count:   
+// PASS ALL GIVEN SAMPLE RUN TESTS ✅: y
+// (Optional) Additional tests count: 2
 
 
 // ------------- CODE -------------
@@ -171,27 +171,159 @@ else {
 
 // ------------- DESIGN -------------
 /* 
-Program Name:
+Program Name: Final Grade Calculator
 
 Program Description:
 
 Design:
 A. INPUT
-Define the input variables including name data type. 
+int numAssigns
+double score           // multiple scores
+double midterm
+double finalExam
+// not in main
+int aNum 
+double num
 
-B. OUTPUT
-Define the output variables including data types. 
+B. OUTPUT         
+double finalScore          
+char letter                
 
 C. CALCULATIONS
-Describe calculations used by algorithms in step D.  
-List all formulas. 
-If there are no calculations needed, state there are no calculations.
+// constants
+const double assigWeight = 0.6
+const double midtermWeight = 0.2
+const double finalWeight = 0.2
+// calculations
+aSum = aSum + score
+assignAvg = aSum / numAssigns
+finalScore = (assignAvg * assigWeight) + (midterm * midtermWeight) + (finalExam * finalWeight)
 
 D. LOGIC and ALGORITHMS
-Design the logic of your program using pseudocode or flowcharts. 
-Use conditionals, loops, functions or array constructs.
-List the steps in transforming inputs into outputs. 
-https://github.com/Glen-Sasek-PCC-Instructor/2025-06-22/blob/main/Pseudocode-Reference.txt
+// Funct Prototypes
+void welcome()
+int readInt(string prompt)
+void readScore(string prompt, double &num)
+double assignAverage(int numAssigns)
+void getInput(double &midtermScore, double &finalExamScore)
+double calcFinalScore(double assignAvg, double midterm, double finalExam)
+void calcLetterGrade(double finalScore, char &letter)
+
+// Main
+main() {
+    welcome()
+
+    int numAssigns = readInt("Enter the number of assignments (0 to 10): ")
+
+    double assignAvg = assignAverage(numAssigns)
+
+    double midterm
+    double finalExam
+    getInput(midterm, finalExam)
+
+    double finalScore = calcFinalScore(assignAvg, midterm, finalExam)
+    char letter
+    calcLetterGrade(finalScore, letter)
+
+    cout << fixed << setprecision(1)
+    DISPLAY "Your Final Numeric score is: " << finalScore
+    DISPLAY "Your Final Grade is: " << letter
+
+    MESSAGE "Thank you for using my Grade Calculator!"
+    RETURN 0
+}
+
+// funct's
+VOID welcome() {
+    MESSAGE "Welcome to my Final Grade Calculator!"
+    DISPLAY "Please enter the following information and I will calculate your Final Numerical Grade and Letter Grade for you!"
+    DISPLAY "The number of assignments must be between 0 and 10."
+    DISPLAY "All scores entered must be between 0 and 4."
+}
+
+// readInt funct
+INT readInt(string prompt) {
+    int aNum
+    bool valid = false
+
+    WHILE (valid == false) {
+        DISPLAY prompt
+        INPUT aNum
+
+        IF (aNum >= 0 AND aNum <= 10) {
+            valid = true
+        }
+        ELSE {
+            DISPLAY "Illegal Value! Please try again!"
+            CLEAR cin
+        }
+    }
+    RETURN aNum
+}
+
+// readScore funct
+VOID readScore(string prompt, double &num) {
+    bool valid = false
+
+    WHILE (valid == false) {
+        DISPLAY prompt
+        INPUT num
+
+        IF (num >= 0 AND num <= 4) {
+            valid = true
+        }
+        ELSE {
+            DISPLAY "Illegal Score! Please try again!"
+            CLEAR cin
+        }
+    }
+}
+
+// assignAverage funct
+DOUBLE assignAverage(int numAssigns) {
+    double aSum = 0.0
+    double score
+
+    IF (numAssigns == 0) {
+        RETURN 0.0
+    }
+
+    FOR (int i = 1; i <= numAssigns; ++i) {
+        readScore("Enter score " + to_string(i) + ": ", score)
+        // calculate
+    }
+    RETURN // calculate avg
+}
+
+// getInput funct
+VOID getInput(double &midtermScore, double &finalExamScore) {
+    readScore("Enter your midterm exam score: ", midtermScore)
+    readScore("Enter your final exam score: ", finalExamScore)
+}
+
+// calcFinalScore funct
+DOUBLE calcFinalScore(double assignAvg, double midterm, double finalExam) {
+    RETURN // calculated finalScore
+}
+
+// calcLetterGrade funct
+VOID calcLetterGrade(double finalScore, char &letter) {
+    IF (finalScore >= 3.3) {}
+        letter = 'A'
+}
+    ELSE IF (finalScore >= 2.8) {
+        letter = 'B'
+}
+    ELSE IF (finalScore >= 2.0) {
+        letter = 'C'
+}
+    ELSE IF (finalScore >= 1.2) {
+        letter = 'D'
+}
+    ELSE {
+        letter = 'F'
+}
+}
 
 
 SAMPLE RUNS
