@@ -308,7 +308,7 @@ DOUBLE calcFinalScore(double assignAvg, double midterm, double finalExam) {
 
 // calcLetterGrade funct
 VOID calcLetterGrade(double finalScore, char &letter) {
-    IF (finalScore >= 3.3) {}
+    IF (finalScore >= 3.3) {
         letter = 'A'
 }
     ELSE IF (finalScore >= 2.8) {
